@@ -10,10 +10,10 @@ window.onload = function () {
 	var tileMap = [];
 
 	var tile = new Image();
-	tile.src = "../img/tile.png";
+	tile.src = "tile.png";
 
 	var building = new Image();
-	building.src = "../img/icecream.png";
+	building.src = "icecream.png";
 
 	canvas.addEventListener('mousedown', handleMouseDown, false);
 

@@ -15,11 +15,11 @@ window.onload = function () {
 	var building = new Image();
 	building.src = "images/icecream.png";
 
-	canvas.addEventListener('mousedown', handleMouseDown, false);
-	//$('#myCanvas').click(function(event) {
-	//	alert('Event for .click() called.');
-	//	handleMouseDown(event);
-	//});
+	//canvas.addEventListener('mousedown', handleMouseDown, false);
+	$('#myCanvas').bind('click', function() {
+		alert('Event for .click() called.');
+		//handleMouseDown(event);
+	});
 
 	draw();
 

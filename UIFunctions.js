@@ -140,4 +140,3 @@ function selectTool(tool, elem) {
 	}
 
 }
-</script>

@@ -47,6 +47,7 @@ window.onload = function () {
 
 	// Set up the event listeners
 	$(window).resize(function() {
+		alert('Resized');
 		g.doResize();
 	});
 	$('#gameCanvas').mousedown(function(e) {

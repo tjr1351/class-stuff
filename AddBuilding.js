@@ -16,6 +16,7 @@
 	building.src = "img/icecream.png";
 
 	$('#myCanvas').bind('click', function(event) {
+		event.preventDefault();
 		handleMouseDown(event);
 	});
 

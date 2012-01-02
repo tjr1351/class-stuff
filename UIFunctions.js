@@ -47,7 +47,6 @@ window.onload = function () {
 
 	// Set up the event listeners
 	$(window).resize(function() {
-		alert('Resized');
 		g.doResize();
 	});
 	$('#gameCanvas').mousedown(function(e) {
@@ -69,7 +68,15 @@ window.onload = function () {
 		});
 
 		// Detect mousewheel scrolling
-		document.body.addEventListener('mousewheel', function(e) { g.handleScroll(e); }, false);
+		//$(document.body).mousewheel(function(e, delta) {
+		//	g.handleScroll(e);
+		//});
+		jQuery(function($) {
+			$(document.body).bind('mousewheel', function(e, delta) {
+				g.handleScroll(delta);
+			});
+		});
+		//document.body.addEventListener('mousewheel', function(e) { g.handleScroll(e); }, false);
 		document.body.addEventListener('DOMMouseScroll', function(e) { g.handleScroll(e); }, false);
 	}
 

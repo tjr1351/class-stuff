@@ -1,4 +1,4 @@
-// Game class for example 14
+﻿// Game class for example 14
 function Game(canvas, game, gridSizeW, gridSizeH) {
 	this.started = true;
 	this.gameContainer = game;

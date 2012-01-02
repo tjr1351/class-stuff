@@ -1,4 +1,4 @@
-
+﻿
 // Enums
 var Keys = {
 	UP: 38,
@@ -46,11 +46,19 @@ window.onload = function () {
 	}
 
 	// Set up the event listeners
-	window.addEventListener('resize', function() { g.doResize(); }, false);
-	canvas.addEventListener(pointer.DOWN, function(e) { g.handleMouseDown(e); }, false);
-	canvas.addEventListener(pointer.MOVE, function(e) { g.handleDrag(e); }, false);
-	document.body.addEventListener(pointer.UP, function(e) { g.handleMouseUp(e); }, false);
-
+	$(window).resize(function() {
+		g.doResize();
+	}
+	$('#gameCanvas').bind('mousedown', function(e) {
+		g.handleMouseDown(e);
+	});
+	$('#gameCanvas').bind('click', function(e) {
+		g.handleDrag(e);
+	});
+	$(document.body).bind('mouseup', function(event) {
+		g.handleMouseUp(e);
+	});
+	
 	if (Modernizr.touch){
 		// Detect gestures
 		document.body.addEventListener('gestureend', function(e) { g.handleGestureEnd(e); }, false);

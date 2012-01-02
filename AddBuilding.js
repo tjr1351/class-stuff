@@ -1,4 +1,4 @@
-window.onload = function () {
+﻿window.onload = function () {
 	var grid = {
 		width: 10,
 		height: 10
@@ -16,7 +16,6 @@ window.onload = function () {
 	building.src = "img/icecream.png";
 
 	$('#myCanvas').bind('click', function(event) {
-		//alert('Event for .click() called.');
 		handleMouseDown(event);
 	});
 

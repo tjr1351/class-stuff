@@ -68,18 +68,18 @@ window.onload = function () {
 		});
 
 		// Detect mousewheel scrolling
-		//$(document.body).mousewheel(function(e, delta) {
-		//	g.handleScroll(e);
-		//});
 		jQuery(function($) {
 			$(document.body).bind('mousewheel', function(e, delta) {
 				g.handleScroll(delta);
 			});
 		});
-		//document.body.addEventListener('mousewheel', function(e) { g.handleScroll(e); }, false);
-		document.body.addEventListener('DOMMouseScroll', function(e) { g.handleScroll(e); }, false);
+		jQuery(function($) {
+			$(document.body).bind('DOMMouseScroll', function(e, delta) { 
+				g.handleScroll(delta); 
+			});
+		});
 	}
-
+	
 	// Listen for GUI events
 	var ui = document.getElementById('ui');
 	$('#ui').mouseup(function(e) {

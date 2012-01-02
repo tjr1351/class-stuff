@@ -48,14 +48,14 @@ window.onload = function () {
 	// Set up the event listeners
 	$(window).resize(function() {
 		g.doResize();
-	}
-	$('#gameCanvas').bind('mousedown', function(e) {
+	});
+	$('#gameCanvas').mousedown(function(e) {
 		g.handleMouseDown(e);
 	});
-	$('#gameCanvas').bind('click', function(e) {
+	$('#gameCanvas').mousemove(function(e) {
 		g.handleDrag(e);
 	});
-	$(document.body).bind('mouseup', function(event) {
+	$(document.body).mouseup(function(e) {
 		g.handleMouseUp(e);
 	});
 	

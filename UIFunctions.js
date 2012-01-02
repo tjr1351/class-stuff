@@ -64,7 +64,9 @@ window.onload = function () {
 		// Detect gestures
 		document.body.addEventListener('gestureend', function(e) { g.handleGestureEnd(e); }, false);
 	} else {
-		document.body.addEventListener('keydown', function(e) { g.handleKeyDown(e); }, false);
+		$(document.body).keydown(function(e) {
+			g.handleKeyDown(e);
+		});
 
 		// Detect mousewheel scrolling
 		document.body.addEventListener('mousewheel', function(e) { g.handleScroll(e); }, false);
@@ -73,7 +75,7 @@ window.onload = function () {
 
 	// Listen for GUI events
 	var ui = document.getElementById('ui');
-	ui.addEventListener(pointer.UP, function(e) {
+	$('#ui').mouseup(function(e) {
 		switch(e.target.getAttribute('id')) {
 			case 'panel-toggle':
 				var panelContainer = document.getElementById('panel-container');
@@ -116,7 +118,7 @@ window.onload = function () {
 
 				break;
 		}
-	}, false);
+	});
 }
 
 function selectTool(tool, elem) {

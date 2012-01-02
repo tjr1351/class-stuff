@@ -29,7 +29,7 @@ function Game(canvas, game, gridSizeW, gridSizeH) {
 
 	// Tile texture
 	this.tile = new Image();
-	this.tile.src = "../img/tile.png";
+	this.tile.src = "img/tile.png";
 
 	// Grid dimensions
 	this.grid = {

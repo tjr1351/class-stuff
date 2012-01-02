@@ -15,8 +15,10 @@ window.onload = function () {
 	var building = new Image();
 	building.src = "img/icecream.png";
 
-	canvas.addEventListener('mousedown', handleMouseDown, false);
-	
+	$('#myCanvas').bind('click', function(event) {
+		//alert('Event for .click() called.');
+		handleMouseDown(event);
+	});
 
 	draw();
 

@@ -207,7 +207,7 @@ Game.prototype.handleMouseDown = function(e) {
 			var offsetY = this.grid.height;
 			
 			// Take into account the offset on the X axis caused by centering the grid horizontally
-			gridOffsetX += (this.canvas.width / 2) - (this.tile.width / 2);
+			offsetX += (this.canvas.width / 2) - (this.tile.width / 2);
 			
 			var col = (e.clientY - offsetY) * 2;
 			col = ((offsetX + col) - e.clientX) / 2;

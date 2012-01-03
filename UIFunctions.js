@@ -91,7 +91,8 @@ window.onload = function () {
 	// Listen for GUI events
 	var ui = document.getElementById('ui');
 	$('#ui').mouseup(function(e) {
-		switch(e.target.getAttribute('id')) {
+		var id = e.target.getAttribute('id');
+		switch(id) {
 			case 'panel-toggle':
 				var panelContainer = document.getElementById('panel-container');
 				var classes = panelContainer.getAttribute('class');
@@ -124,19 +125,16 @@ window.onload = function () {
 				selectTool(Tools.DEMOLISH, document.getElementById('demolish'));
 				break;
 			case 'tree':
-				Buildings.current = Buildings.TREE;
-				selectTool(Tools.Build, document.getElementById('tree'));
-				selectBuilding('tree');
+				selectTool(Tools.BUILD, document.getElementById('tree'));
+				selectBuilding('tree', g);
 				break;
 			case 'icecream':
-				Buildings.current = Buildings.ICECREAM;
-				selectTool(Tools.Build, document.getElementById('icecream'));
-				selectBuilding('icecream');
+				selectTool(Tools.BUILD, document.getElementById('icecream'));
+				selectBuilding('icecream', g);
 				break;
 			case 'cinema':
-				Buildings.current = Buildings.CINEMA;
-				selectTool(Tools.Build, document.getElementById('cinema'));
-				selectBuilding('cinema');
+				selectTool(Tools.BUILD, document.getElementById('cinema'));
+				selectBuilding('cinema', g);
 				break;
 			default:
 			
@@ -155,18 +153,9 @@ window.onload = function () {
 function selectTool(tool, elem) {
 
 	// Remove the "active" class from any element inside the div#tools ul
-	if (Tools.current == Tools.Build) {
-		var t = document.getElementById('select');
-		for (var i = 0, x = t.parentNode.childNodes.length; i < x; i++) {
-			if (t.parentNode.childNodes[i].tagName == "LI") {
-				t.parentNode.childNodes[i].className = null;
-			}
-		}
-	} else {
-		for (var i = 0, x = elem.parentNode.childNodes.length; i < x; i++) {
-			if (elem.parentNode.childNodes[i].tagName == "LI") {
-				elem.parentNode.childNodes[i].className = null;
-			}
+	for (var i = 0, x = elem.parentNode.childNodes.length; i < x; i++) {
+		if (elem.parentNode.childNodes[i].tagName == "LI") {
+			elem.parentNode.childNodes[i].className = null;
 		}
 	}
 		
@@ -174,7 +163,8 @@ function selectTool(tool, elem) {
 
 	switch(tool) {
 		case Tools.BUILD:
-			Tools.Current = Tools.BUILD;
+			Tools.current = Tools.BUILD;
+			break;
 		case Tools.SELECT:
 			Tools.current = Tools.SELECT;
 			break;
@@ -192,23 +182,34 @@ function selectTool(tool, elem) {
 			break;
 	}
 
-}
-
-function SelectBuilding(id) {
-	switch (id) {
-		case 'tree':
-			Buildings.current = Buildings.TREE;
-			g.building = new Building(id);
-			break;
-		case 'icecream':
-			Buildings.current = Buildings.ICECREAM;
-			g.building = new Building(id);
-			break;
-		case 'cinema':
-			Buildings.current = Buildings.CINEMA;
-			g.building = new Building(id);
-			break;
-		default:
-			break;
+	if (Tools.current == Tools.BUILD) {
+		//unselect other tools
+		var t = document.getElementById('select');
+		for (var i = 0, x = t.parentNode.childNodes.length; i < x; i++) {
+			if (t.parentNode.childNodes[i].tagName == "LI") {
+				t.parentNode.childNodes[i].className = null;
+			}
+		}
 	}
 }
+
+
+	function selectBuilding(id, g) {
+
+		switch (id) {
+			case 'tree':
+				Buildings.current = Buildings.TREE;
+				g.building = new Building(id);
+				break;
+			case 'icecream':
+				Buildings.current = Buildings.ICECREAM;
+				g.building = new Building(id);
+				break;
+			case 'cinema':
+				Buildings.current = Buildings.CINEMA;
+				g.building = new Building(id);
+				break;
+			default:
+				break;
+		}
+	}

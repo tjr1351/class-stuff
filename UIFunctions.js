@@ -25,6 +25,14 @@ var Tools = {
 	BUILD: 5
 }
 
+var Buildings = {
+	current: 0, //Default
+	
+	TREE: 0,
+	ICECREAM: 1,
+	CINEMA: 2
+}
+
 window.onload = function () {
 
 	var canvas = document.getElementById('gameCanvas');
@@ -115,7 +123,23 @@ window.onload = function () {
 			case 'demolish':
 				selectTool(Tools.DEMOLISH, document.getElementById('demolish'));
 				break;
+			case 'tree':
+				Buildings.current = Buildings.TREE;
+				selectTool(Tools.Build, document.getElementById('tree'));
+				selectBuilding('tree');
+				break;
+			case 'icecream':
+				Buildings.current = Buildings.ICECREAM;
+				selectTool(Tools.Build, document.getElementById('icecream'));
+				selectBuilding('icecream');
+				break;
+			case 'cinema':
+				Buildings.current = Buildings.CINEMA;
+				selectTool(Tools.Build, document.getElementById('cinema'));
+				selectBuilding('cinema');
+				break;
 			default:
+			
 				// He didn't click on any option and actually click on an empty section of the UI, fallback to the canvas.
 				e.srcElement = canvas;
 				e.target = canvas;
@@ -131,15 +155,26 @@ window.onload = function () {
 function selectTool(tool, elem) {
 
 	// Remove the "active" class from any element inside the div#tools ul
-	for (var i = 0, x = elem.parentNode.childNodes.length; i < x; i++) {
-		if (elem.parentNode.childNodes[i].tagName == "LI") {
-			elem.parentNode.childNodes[i].className = null;
+	if (Tools.current == Tools.Build) {
+		var t = document.getElementById('select');
+		for (var i = 0, x = t.parentNode.childNodes.length; i < x; i++) {
+			if (t.parentNode.childNodes[i].tagName == "LI") {
+				t.parentNode.childNodes[i].className = null;
+			}
+		}
+	} else {
+		for (var i = 0, x = elem.parentNode.childNodes.length; i < x; i++) {
+			if (elem.parentNode.childNodes[i].tagName == "LI") {
+				elem.parentNode.childNodes[i].className = null;
+			}
 		}
 	}
-
+		
 	elem.className += "active";
 
 	switch(tool) {
+		case Tools.BUILD:
+			Tools.Current = Tools.BUILD;
 		case Tools.SELECT:
 			Tools.current = Tools.SELECT;
 			break;
@@ -157,4 +192,23 @@ function selectTool(tool, elem) {
 			break;
 	}
 
+}
+
+function SelectBuilding(id) {
+	switch (id) {
+		case 'tree':
+			Buildings.current = Buildings.TREE;
+			g.building = new Building(id);
+			break;
+		case 'icecream':
+			Buildings.current = Buildings.ICECREAM;
+			g.building = new Building(id);
+			break;
+		case 'cinema':
+			Buildings.current = Buildings.CINEMA;
+			g.building = new Building(id);
+			break;
+		default:
+			break;
+	}
 }

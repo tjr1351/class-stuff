@@ -1,4 +1,19 @@
-﻿// Game class for example 14
+﻿function Building(type) {
+	this.image = new Image();
+	this.bType = "";
+	this.src = "";
+	this.setType = setType;
+	setType(type);
+}
+
+function setType(type) {
+	image = new Image();
+	image.src = src = "img/" + type + ".png";
+	bType = type;
+}
+
+
+// Game class for example 14
 function Game(canvas, game, gridSizeW, gridSizeH) {
 	this.started = true;
 	this.gameContainer = game;
@@ -32,8 +47,7 @@ function Game(canvas, game, gridSizeW, gridSizeH) {
 	this.tile.src = "img/tile.png";
 	
 	//Building texture
-	this.building = new Image();
-	this.building.src = "img/icecream.png";
+	this.building = new Building("tree");
 
 	// Grid dimensions
 	this.grid = {
@@ -211,7 +225,20 @@ Game.prototype.handleMouseDown = function(e) {
 
 				this.tileMap[row] = (this.tileMap[row] === undefined) ? [] : this.tileMap[row];
 
-				this.tileMap[row][col] = 1;
+				switch(Buildings.current) {
+					case Buildings.TREE:
+						this.tileMap[row][col] = 1;
+						break;
+					case Buildings.ICECREAM:
+						this.tileMap[row][col] = 2;
+						break;
+					case Buildings.CINEMA:
+						this.tileMap[row][col] = 3;
+						break;
+					default:
+						alert('No building selected.');
+						break;
+				}
 			}
 			
 			break;
@@ -296,8 +323,8 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 
 	var tileHeight = this.tile.height * this.zoomHelper.level;
 	var tileWidth = this.tile.width * this.zoomHelper.level;
-	var buildingHeight = this.building.height * this.zoomHelper.level;
-	var buildingWidth = this.building.width * this.zoomHelper.level;
+	var buildingHeight = this.building.image.height * this.zoomHelper.level;
+	var buildingWidth = this.building.image.width * this.zoomHelper.level;
 
 	for (var row = startRow; row < rowCount; row++) {
 		for (var col = startCol; col < colCount; col++) {
@@ -309,7 +336,7 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 			if (this.tileMap[row] != null && this.tileMap[row][col] != null) {
 				xpos -= (building.width / 2) - (title.width / 2);
 				ypos -= building.height - title.height;
-				this.c.drawImage(this.building, Math.round(xpos), Math.round(ypos), buildingWidth, buildingHeight);
+				this.c.drawImage(this.building.image, Math.round(xpos), Math.round(ypos), buildingWidth, buildingHeight);
 			} else {
 				if (Math.round(xpos) + tileWidth >= srcX &&
 					Math.round(ypos) + tileHeight >= srcY &&

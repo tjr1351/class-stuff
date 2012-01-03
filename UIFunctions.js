@@ -30,7 +30,6 @@ var Buildings = {
 	
 	TREE: 0,
 	ICECREAM: 1,
-	CINEMA: 2
 }
 
 window.onload = function () {
@@ -39,7 +38,7 @@ window.onload = function () {
 	var game = document.getElementById('game');
 
 	// Initialize the game object
-	var g = new Game(canvas, game, 500, 500);
+	var g = new Game(canvas, game, 5, 5);
 
 	var pointer = {
 		DOWN: 'mousedown',
@@ -126,15 +125,11 @@ window.onload = function () {
 				break;
 			case 'tree':
 				selectTool(Tools.BUILD, document.getElementById('tree'));
-				selectBuilding('tree', g);
+				selectBuilding('tree');
 				break;
 			case 'icecream':
 				selectTool(Tools.BUILD, document.getElementById('icecream'));
-				selectBuilding('icecream', g);
-				break;
-			case 'cinema':
-				selectTool(Tools.BUILD, document.getElementById('cinema'));
-				selectBuilding('cinema', g);
+				selectBuilding('icecream');
 				break;
 			default:
 			
@@ -194,20 +189,16 @@ function selectTool(tool, elem) {
 }
 
 
-	function selectBuilding(id, g) {
+	function selectBuilding(id) {
 
 		switch (id) {
 			case 'tree':
 				Buildings.current = Buildings.TREE;
-				g.building = new Building(id);
+				//g.building = new Building(id);
 				break;
 			case 'icecream':
 				Buildings.current = Buildings.ICECREAM;
-				g.building = new Building(id);
-				break;
-			case 'cinema':
-				Buildings.current = Buildings.CINEMA;
-				g.building = new Building(id);
+				//g.building = new Building(id);
 				break;
 			default:
 				break;

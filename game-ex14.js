@@ -1,15 +1,9 @@
 ﻿function Building(type) {
 	this.image = new Image();
-	this.bType = "";
-	this.src = "";
-	this.setType = setType;
-	setType(type);
-}
-
-function setType(type) {
-	image = new Image();
-	image.src = src = "img/" + type + ".png";
-	bType = type;
+	this.bType = type;
+	this.image.src = this.src = "img/" + type + ".png";
+	this.height = this.image.height;
+	this.width = this.image.width;
 }
 
 
@@ -228,12 +222,11 @@ Game.prototype.handleMouseDown = function(e) {
 				switch(Buildings.current) {
 					case Buildings.TREE:
 						this.tileMap[row][col] = 1;
+						this.building = new Building('tree');
 						break;
 					case Buildings.ICECREAM:
 						this.tileMap[row][col] = 2;
-						break;
-					case Buildings.CINEMA:
-						this.tileMap[row][col] = 3;
+						this.building = new Building('icecream');
 						break;
 					default:
 						alert('No building selected.');
@@ -323,8 +316,6 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 
 	var tileHeight = this.tile.height * this.zoomHelper.level;
 	var tileWidth = this.tile.width * this.zoomHelper.level;
-	var buildingHeight = this.building.image.height * this.zoomHelper.level;
-	var buildingWidth = this.building.image.width * this.zoomHelper.level;
 
 	for (var row = startRow; row < rowCount; row++) {
 		for (var col = startCol; col < colCount; col++) {
@@ -334,9 +325,21 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 			var ypos = (row + col) * (tileHeight / 2) + (this.grid.height * this.zoomHelper.level) + this.scrollPosition.y;
 
 			if (this.tileMap[row] != null && this.tileMap[row][col] != null) {
-				xpos -= (building.width / 2) - (title.width / 2);
-				ypos -= building.height - title.height;
-				this.c.drawImage(this.building.image, Math.round(xpos), Math.round(ypos), buildingWidth, buildingHeight);
+				xpos -= (this.building.image.width / 2) - (this.tile.width / 2);
+				ypos -= this.building.image.height - this.tile.height;
+				
+				var currentBuilding;
+				if (this.tileMap[row][col] == 1) {
+					currentBuilding = new Building('tree');
+				} else if (this.tileMap[row][col] == 2) {
+					currentBuilding = new Building('icecream');
+				}
+				
+				if (currentBuilding != null) {
+					this.c.drawImage(currentBuilding.image, Math.round(xpos), Math.round(ypos), currentBuilding.width, currentBuilding.height);
+				}
+				
+				
 			} else {
 				if (Math.round(xpos) + tileWidth >= srcX &&
 					Math.round(ypos) + tileHeight >= srcY &&

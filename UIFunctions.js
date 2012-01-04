@@ -98,11 +98,11 @@ window.onload = function () {
 				var classes = panelContainer.getAttribute('class');
 
 				if (classes != null && classes.length > 0) {
-					panelContainer.setAttribute('class', '');
-					document.getElementById('panel-toggle').innerHTML = 'Cancel';
+					$('#panel-container').removeClass();
+					$('#panel-toggle').text('Cancel');
 				} else {
-					panelContainer.setAttribute('class', 'hidden');
-					document.getElementById('panel-toggle').innerHTML = 'Build';
+					$('#panel-container').addClass('hidden');
+					$('#panel-toggle').text('Build');
 				}
 				break;
 			case 'select':

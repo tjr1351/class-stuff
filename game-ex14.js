@@ -325,15 +325,15 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 			var ypos = (row + col) * (tileHeight / 2) + (this.grid.height * this.zoomHelper.level) + this.scrollPosition.y;
 
 			if (this.tileMap[row] != null && this.tileMap[row][col] != null) {
-				xpos -= (this.building.image.width / 2) - (this.tile.width / 2);
-				ypos -= this.building.image.height - this.tile.height;
-				
 				var currentBuilding;
 				if (this.tileMap[row][col] == 1) {
 					currentBuilding = new Building('tree');
 				} else if (this.tileMap[row][col] == 2) {
 					currentBuilding = new Building('icecream');
 				}
+			
+				xpos -= (currentBuilding.width / 2) - (this.tile.width / 2);
+				ypos -= currentBuilding.height - this.tile.height;
 				
 				//fix placement in scrolling issue
 				if (this.zoomHelper.level == this.zoomHelper.FAR) {

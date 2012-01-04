@@ -335,8 +335,15 @@ Game.prototype.draw = function(srcX, srcY, destX, destY) {
 					currentBuilding = new Building('icecream');
 				}
 				
+				//fix placement in scrolling issue
+				if (this.zoomHelper.level == this.zoomHelper.FAR) {
+					ypos += currentBuilding.height / 5;
+				} else if (this.zoomHelper.level == this.zoomHelper.CLOSE) {
+					ypos -= currentBuilding.height / 2;
+				}
+				
 				if (currentBuilding != null) {
-					this.c.drawImage(currentBuilding.image, Math.round(xpos), Math.round(ypos), currentBuilding.width, currentBuilding.height);
+					this.c.drawImage(currentBuilding.image, Math.round(xpos), Math.round(ypos), currentBuilding.width * this.zoomHelper.level, currentBuilding.height * this.zoomHelper.level);
 				}
 				
 				

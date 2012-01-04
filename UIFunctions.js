@@ -26,10 +26,10 @@ var Tools = {
 }
 
 var Buildings = {
-	current: 0, //Default
+	current: 10, //Default
 	
-	TREE: 0,
-	ICECREAM: 1,
+	TREE: 10,
+	ICECREAM: 50,
 }
 
 window.onload = function () {
@@ -38,7 +38,7 @@ window.onload = function () {
 	var game = document.getElementById('game');
 
 	// Initialize the game object
-	var g = new Game(canvas, game, 5, 5);
+	var g = new Game(canvas, game, 100, 100);
 
 	var pointer = {
 		DOWN: 'mousedown',
@@ -91,6 +91,7 @@ window.onload = function () {
 	var ui = document.getElementById('ui');
 	$('#ui').mouseup(function(e) {
 		var id = e.target.getAttribute('id');
+		//alert(id);
 		switch(id) {
 			case 'panel-toggle':
 				var panelContainer = document.getElementById('panel-container');

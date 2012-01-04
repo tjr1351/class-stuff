@@ -106,30 +106,30 @@ window.onload = function () {
 				}
 				break;
 			case 'select':
-				selectTool(Tools.SELECT, document.getElementById('select'));
+				selectTool(Tools.SELECT, 'select');
 				break;
 			case 'move':
-				selectTool(Tools.MOVE, document.getElementById('move'));
+				selectTool(Tools.MOVE, 'move');
 				break;
 			case 'zoomIn':
-				selectTool(Tools.ZOOM_IN, document.getElementById('zoomIn'));
+				selectTool(Tools.ZOOM_IN, 'zoomIn');
 				break;
 			case 'zoomOut':
-				selectTool(Tools.ZOOM_OUT, document.getElementById('zoomOut'));
+				selectTool(Tools.ZOOM_OUT, 'zoomOut');
 				break;
 			case 'rotate':
 				g.rotateGrid();
 				g.draw();
 				break;
 			case 'demolish':
-				selectTool(Tools.DEMOLISH, document.getElementById('demolish'));
+				selectTool(Tools.DEMOLISH, 'demolish');
 				break;
 			case 'tree':
-				selectTool(Tools.BUILD, document.getElementById('tree'));
+				selectTool(Tools.BUILD, 'tree');
 				selectBuilding('tree');
 				break;
 			case 'icecream':
-				selectTool(Tools.BUILD, document.getElementById('icecream'));
+				selectTool(Tools.BUILD, 'icecream');
 				selectBuilding('icecream');
 				break;
 			default:
@@ -149,13 +149,9 @@ window.onload = function () {
 function selectTool(tool, elem) {
 
 	// Remove the "active" class from any element inside the div#tools ul
-	for (var i = 0, x = elem.parentNode.childNodes.length; i < x; i++) {
-		if (elem.parentNode.childNodes[i].tagName == "LI") {
-			elem.parentNode.childNodes[i].className = null;
-		}
-	}
-		
-	elem.className += "active";
+	$('li').removeClass('active');
+	
+	$('#' + elem).addClass('active');
 
 	switch(tool) {
 		case Tools.BUILD:
@@ -176,16 +172,6 @@ function selectTool(tool, elem) {
 		case Tools.DEMOLISH:
 			Tools.current = Tools.DEMOLISH;
 			break;
-	}
-
-	if (Tools.current == Tools.BUILD) {
-		//unselect other tools
-		var t = document.getElementById('select');
-		for (var i = 0, x = t.parentNode.childNodes.length; i < x; i++) {
-			if (t.parentNode.childNodes[i].tagName == "LI") {
-				t.parentNode.childNodes[i].className = null;
-			}
-		}
 	}
 }
 

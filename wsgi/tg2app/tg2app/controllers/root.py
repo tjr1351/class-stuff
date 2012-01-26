@@ -41,6 +41,10 @@ class RootController(BaseController):
     def index(self):
         """Handle the front-page."""
         return dict(page='index')
+    @expose('tg2app.templates.demo')
+    def index(self):
+        """Handle the demo-page."""
+        return dict(page='demo')
 
     @expose('tg2app.templates.about')
     def about(self):

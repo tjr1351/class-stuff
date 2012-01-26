@@ -51,7 +51,7 @@ setup(
         "tw.forms",
         ],
     setup_requires=["PasteScript >= 1.7"],
-    paster_plugins=['PasteScript', 'Pylons', 'TurboGears2', 'tg.devtools'],
+    paster_plugins=['PasteScript', 'Pylons==1.0','WebOb==1.0.8', 'TurboGears2', 'tg.devtools'],
     packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
     test_suite='nose.collector',

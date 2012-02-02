@@ -51,6 +51,21 @@ class RootController(BaseController):
         """Handle the 'about' page."""
         return dict(page='about')
 
+    @expose()
+    def add_user(self, username):
+        if len(username) < 7:
+            flash('Too short!')
+            redirect('/get_users')
+            
+        my_user = model.User(
+            user_name=username,
+            email_address=username + '@abc.com',
+            display_name='no display name',
+        )
+        DBSession.add(my_user)
+        
+        redirect('/get_users')
+
     @expose('json')
     def get_users(self):
         users = DBSession.query(model.User).all()

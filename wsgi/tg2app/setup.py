@@ -52,7 +52,8 @@ setup(
         "tgext.admin >= 0.3.9",
         "tw.forms",
         'WebOb==1.0.8',
-		'Pylons==1.0'
+		'Pylons==1.0',
+		"mysql-python",
         ],
     setup_requires=["PasteScript >= 1.7"],
     paster_plugins=['PasteScript', 'Pylons', 'TurboGears2', 'tg.devtools'],
